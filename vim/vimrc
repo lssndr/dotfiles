@@ -1,0 +1,203 @@
+"**********************************************"
+"                 VIM settings                 "
+"**********************************************"
+"
+"    KKKKKKKKKKKKKKKK ;;;;;  KKKKKKKKKKKKKKKK  
+"    KKKKKKKKKKKKKKKK;;;;;;; KKKKKKKKKKKKKKKK  
+"       KKKKKKKKKKKK;;;;;;;;;KKKKKKKKKKKKKK   
+"       KKKKKKKKKKKK;;;;;;;;;KKKKKKKKKKKKK     
+"       KKKKKKKKKKKK;;;;;;;KKKKKKKKKKKKK       
+"       KKKKKKKKKKKK;;;;;KKKKKKKKKKKKK         
+"       KKKKKKKKKKKK;;;KKKKKKKKKKKK;;;;;       
+"     ;;KKKKKKKKKKKK;KKKKKKKKKKKKK;;;;;;;;     
+"   ;;;;KKKKKKKKKKKKKKKKKKKKKKKKK;;;;;;;;;;;; 
+"  ;;;;;KKKKKKKKKKKKKKKKKKKKKKK;;;;;;;;;;;;;;;  
+"    ;;;KKKKKKKKKKKKKKKKKKKKK;;;;;;;;;;;;;;;;;    
+"     ;;KKKKKKKKKKKKKKKKKK;;;;;;;;;;;;;;;;;;     
+"      ;KKKKKKKKKKKKKKKK;;;;;;;;;;;;;;;;;        
+"       KKKKKKKKKKKKKK;;;;;;;;;;;;;;;;;    
+"       KKKKKKKKKKKK;;;;;;;;;;;;;;;;;    
+"       KKKKKKKKKK;;;;;;;;;;;;;;;;;;  
+"       KKKKKKKK;;;;;;;;;;;;;;;;;;     
+
+
+" Disable vi compatibility
+set nocompatible
+
+" Enable mouse support on all modes
+if has('mouse')
+	set mouse=a
+endif
+
+" Enable syntax highlighting
+if has('syntax')
+	syntax on
+endif
+
+" Enable filetype indentation rules
+if has('filetype')
+	filetype indent plugin on
+endif
+
+" General configs
+set ruler
+set number
+set hidden
+set confirm
+set showcmd
+set ttyfast
+set hlsearch
+set showmode
+set ttimeout
+set wildmenu
+set incsearch
+set notimeout
+set smartcase
+set cursorline
+set ignorecase
+set nomodeline
+set cmdheight=2
+set scrolloff=5
+set laststatus=2
+set nostartofline
+set ttimeoutlen=100
+set backspace=indent,eol,start
+
+" Indentation
+set autoindent
+set shiftround
+"set smartindent
+
+" Using TABS
+set tabstop=4
+set shiftwidth=4
+
+" Using SPACES
+"set smarttab
+"set expandtab
+"set shiftwidth=4
+"set softtabstop=4
+
+" Highlight matching brackets
+set matchpairs+=<:>
+
+" Display whitespaces
+"set list
+set listchars=space:·,lead:·,trail:·,tab:<->,eol:$,extends:>,precedes:<
+
+" Text wrapping (auto or fixed)
+set wrap
+set breakindent
+"set textwidth=80
+
+" Keep backups, swap and undo files in vim dir
+silent !mkdir ~/.vim/backup ~/.vim/swp ~/.vim/undo > /dev/null 2>&1
+set undodir=~/.vim/undo//
+set directory=~/.vim/swp//
+set backupdir=~/.vim/backup//
+
+" Disable audio and visual bells
+set t_vb=
+set visualbell
+
+
+"**********************************************"
+"                   VIM-Plug                   "
+"**********************************************"
+
+" Vim-plug automatic installation
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+
+if empty(glob(data_dir . '/autoload/plug.vim'))
+	silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+
+" Fzf fuzzy finder
+Plug 'junegunn/fzf'
+
+" NERD tree
+Plug 'preservim/nerdtree'
+
+" Lightline statusbar
+Plug 'itchyny/lightline.vim'
+
+" GitGutter
+Plug 'airblade/vim-gitgutter'
+
+" Colorschemes
+Plug 'ayu-theme/ayu-vim'
+Plug 'arcticicestudio/nord-vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
+
+call plug#end()
+
+
+"**********************************************"
+"               Plugins options                "
+"**********************************************"
+
+" Ayu (light, mirage, dark)
+let ayucolor="mirage"
+
+" NERD Tree
+nnoremap <C-n> :NERDTreeToggle<CR>
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" GitGutter
+set updatetime=100
+let g:gitgutter_enabled = 0
+nnoremap <C-g> :GitGutterToggle<CR>
+
+" FZF
+let $FZF_DEFAULT_COMMAND = "find -not -path '*/\.git/*'"
+
+" Lightline (powerline, wombat, one, nord)
+set noshowmode
+let g:lightline = {'colorscheme': 'nord'}
+
+
+"**********************************************"
+"                Custom keymaps                "
+"**********************************************"
+
+" Save
+nnoremap <C-s> :w<CR>
+
+" Render whitespaces
+nnoremap <C-r> :set list!<CR>
+
+" Move current line
+nnoremap <C-Up> :m .-2<CR>==
+nnoremap <C-Down> :m .+1<CR>==
+vnoremap <C-Up> :m '<-2<CR>gv=gv
+vnoremap <C-Down> :m '>+1<CR>gv=gv
+
+" Buffer
+nnoremap gn :bn<cr>
+nnoremap gp :bp<cr>
+nnoremap gd :bd<cr>  
+
+" Tabs
+nnoremap <C-t> :tabnew<CR>
+
+" Toggle for 'paste' mode
+set pastetoggle=<F2>
+
+" Add newline before/after current line
+nnoremap <Enter> o<Esc>k
+nnoremap <S-Enter> O<Esc>j
+
+
+"**********************************************"
+"                 Colorscheme                  "
+"**********************************************"
+
+try
+	colorscheme nord
+	set termguicolors
+catch /^Vim\%((\a\+)\)\=:E185/
+	colorscheme koehler
+endtry

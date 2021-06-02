@@ -1,0 +1,44 @@
+# Generic aliases
+alias e='exit'
+alias c='clear'
+
+alias ip='ip --color=auto'
+alias diff='diff --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+alias ld='exa -1Da'
+alias l='exa -1 --group-directories-first'
+alias ll='exa -la --group-directories-first'
+alias la='exa -1a --group-directories-first'
+
+# Distro specific aliases
+OS="$( cat /etc/*-release | grep -Po '(?<=^ID=).*' )"
+
+if [[ $OS == 'arch' || $OS == 'manjaro' ]]; then
+	# Arch based 
+	alias list='sudo pacman -Q'
+	alias show='sudo pacman -Si'
+	alias clean='sudo pacman -Sc'
+	alias remove='sudo pacman -Rs'
+	alias search='sudo pacman -Ss'
+	alias install='sudo pacman -S'
+	alias update='sudo pacman -Syu'
+elif [[ $OS == 'fedora' ]]; then
+	# RPM based
+	alias show='sudo dnf info'
+	alias remove='sudo dnf remove'
+	alias search='sudo dnf search'
+	alias install='sudo dnf install'
+	alias update='sudo dnf check-update && sudo dnf upgrade'
+elif [[ $OS == 'debian' || $OS == 'ubuntu' ]]; then
+	# Debian based
+	alias show='apt show'
+	alias search='apt search'
+	alias purge='sudo apt purge'
+	alias remove='sudo apt remove'
+	alias install='sudo apt install'
+	alias list='apt list --installed'
+	alias update='sudo apt update && sudo apt upgrade && sudo apt autoremove'
+fi
