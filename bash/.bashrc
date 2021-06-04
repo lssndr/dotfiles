@@ -1,24 +1,24 @@
 #                  BASH configs                
-#                       ..                       
-#                   ,loxkkxdo;                   
-#               .:odxxKMMMMXkxdoc.               
-#            'loxxONMMMMMMMMMMW0xxdo;            
-#        .:odxxKMMMMMMMMMMMMMMMMMMXxxdoc.        
-#       ddxONMMMMMMMMMMMMMMMMMMMMMMMMW0xdx.      
-#      0:NMMMMMMMMMMMMMMMMMMMMMMMMMMMW0xo'K      
-#      XcMMMMMMMMMMMMMMMMMMMMMMMMMWOl'....O      
-#      XcMMMMMMMMMMMMMMMMMMMMMMXxc........O      
-#      XcMMMMMMMMMMMMMMMMMMMKd;...........O      
-#      XcMMMMMMMMMMMMMMMMKl'..............O      
-#      XcMMMMMMMMMMMMMMMK....''...........O      
-#      XcMMMMMMMMMMMMMMMk...'K0:..........O      
-#      XcMMMMMMMMMMMMMMMk...Xl'...........O      
-#      0:MMMMMMMMMMMMMMMk...k0Xk..........O      
-#       ldNMMMMMMMMMMMMMk...',kd..,;,....l.      
-#         .dk0WMMMMMMMMMk...xKl..''...:.         
-#             ,xkXMMMMMMk.........,:             
-#                .dx0WMMk......:.                
-#                    ;xkk..,:
+#                       MM                       
+#                   MMMMMMMMMM                   
+#               MMMMMMMMMMMMMMMMMM               
+#            MMMMMMMMMMMMMMMMMMMMMMMM            
+#        MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM        
+#       MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM      
+#      MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM      
+#      MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM....M      
+#      MMMMMMMMMMMMMMMMMMMMMMMMMMM........M      
+#      MMMMMMMMMMMMMMMMMMMMMM.............M      
+#      MMMMMMMMMMMMMMMMMMMM...............M      
+#      MMMMMMMMMMMMMMMMMM....XX...........M      
+#      MMMMMMMMMMMMMMMMMM...XXXX..........M      
+#      MMMMMMMMMMMMMMMMMM...XXX...........M      
+#      MMMMMMMMMMMMMMMMMM...XXXX..........M      
+#       MMMMMMMMMMMMMMMMM....XXX..........M      
+#         MMMMMMMMMMMMMMM...XXX........:         
+#             MMMMMMMMMMM..........:             
+#                MMMMMMMM.......:                
+#                    MMMM...:
 
 # If not running interactively simply return
 case $- in
