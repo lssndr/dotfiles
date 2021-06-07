@@ -1,0 +1,219 @@
+#                   SWAY configs
+#                         .';::,                  
+#                    .',:::::  ....'',,;;;;;;,.   
+#                 .;::::    .',:::::::::::::::.   
+#                 :'       ;::::::::::::::::;.    
+#                     ...   ;:::::::::::::::::.   
+#             .'   '::::.   xl    ::::::.         
+#           ,:.   .:::     ol       ......        
+#                       'lc     ..,;:::.          
+#                   .,o;     ';::::,      .       
+#               .,lkkl,....,cx,     ..,:::::.     
+#            .:x.                                 
+#          .o;                                    
+#         o:                 .....                
+#        kx...,,;;;,''';:lodddddddddoc;..         
+#     .'xOxdddddddddddddddddddddddddddddddl:,.    
+# ,codddOkddddddddddddddddddddddddddddddddddddddc,
+# cccllooddddddddddddddddddddddddddddddddddoollccc
+#     'ccclllooddddddddddddddddddddddoolllccc'    
+#           :cccllooddddddddddddoollccc:          
+#                .cccclloooollcccc.               
+#                      ;cccc;
+
+
+#
+# Variables
+#
+
+# Leader key (Mod4="Windows key", Mod1="Alt")
+set $mod Mod4
+
+# Browser 
+set $browser brave
+
+# File manager
+set $file_mgr nautilus
+
+# Terminal
+set $term gnome-terminal
+
+# Spotify
+set $spotify flatpak run com.spotify.Client 
+
+# Wallpaper
+set $wallpaper /usr/share/backgrounds/gnome/Lava.jpg
+
+# Application launcher
+set $menu dmenu_path | dmenu | xargs swaymsg exec --
+
+
+#
+# Input/Output
+#
+
+# Wallpaper 
+output * bg $wallpaper fill
+
+# Output
+#output HDMI-A-1 resolution 1920x1080@60Hz position 1920,0
+
+
+
+# input
+#input "2:14:synps/2_synaptics_touchpad" {
+#    dwt enabled
+#    tap enabled
+#    natural_scroll enabled
+#    middle_emulation enabled
+#}
+
+
+#
+# key bindings
+#
+
+### apps keys
+# Kill window
+bindsym $mod+q kill
+
+# Browser
+bindsym $mod+b exec $browser
+
+# Spotify
+bindsym $mod+m exec $spotify
+
+# Launcher
+bindsym Mod1+space exec $menu
+
+# File manager
+bindsym $mod+f exec $file_mgr
+
+# Terminal
+bindsym $mod+Return exec $term
+
+### Navigation keys
+# Move focus
+bindsym $mod+Up focus up
+bindsym $mod+Down focus down
+bindsym $mod+Left focus left
+bindsym $mod+Right focus right
+
+# Move focused window
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Right move right
+
+# Switch workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+bindsym $mod+Ctrl+Left workspace prev
+bindsym $mod+Ctrl+Right workspace next
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+
+### Layout keys
+# Splitting mode
+bindsym $mod+h splith
+bindsym $mod+v splitv
+
+# Fullscreen
+bindsym F11 fullscreen
+
+# Dragging windows modifier
+floating_modifier $mod normal
+
+# Layout styles
+bindsym $mod+t layout tabbed
+bindsym $mod+s layout stacking
+bindsym $mod+e layout toggle split
+
+# Swap focus between tiling/floating area
+bindsym $mod+space focus mode_toggle
+
+# Toggle tiling/floating mode
+bindsym $mod+Shift+space floating toggle
+
+# Resize mode
+mode "resize" {
+    
+    bindsym Down resize grow height 20px
+    bindsym Up resize shrink height 20px
+    bindsym Right resize grow width 20px
+    bindsym Left resize shrink width 20px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+### Function keys
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+
+### Scratchpad keys
+# Show scratchpad windows
+#bindsym $mod+minus scratchpad show
+# Move to scratchpad
+#bindsym $mod+Shift+minus move scratchpad
+
+### Session keys
+# Reload Sway
+bindsym $mod+Shift+c reload
+
+# Log out
+bindsym $mod+Shift+r exec swaynag -t warning -m 'Reboot?' -b 'Yep' 'reboot' -s 'Nope' --button-gap 0
+bindsym $mod+Shift+l exec swaynag -t warning -m 'Log out?' -b 'Yep' 'swaymsg exit' -s 'Nope' --button-gap 0 
+bindsym $mod+Shift+s exec swaynag -t warning -m 'Shut down' -b 'Yep' 'shutdown now' -s 'Nope' --button-gap 0
+
+
+#
+# Workspace style
+#
+gaps outer 5
+gaps inner 10
+default_border none
+hide_edge_borders both
+
+
+#
+# Status Bar
+#
+bar {
+    position top
+
+    status_command while date +'%k:%M - %d/%m/%y'; do sleep 1; done
+
+    colors {
+        statusline #ffffff
+        background #323232
+        inactive_workspace #32323200 #32323200 #5c5c5c
+    }
+}
+
+include /etc/sway/config.d/*
